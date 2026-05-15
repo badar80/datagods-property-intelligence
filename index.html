@@ -22,6 +22,14 @@
 
     html { scroll-behavior: smooth; }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    #samples {
+      scroll-margin-top: 110px;
+    }
+
     body {
       font-family: Arial, Helvetica, sans-serif;
       background: radial-gradient(circle at 70% 20%, #202837 0%, var(--bg) 40%, #07090d 100%);
@@ -165,12 +173,14 @@
     .trusted-tags span::before { content: "✓"; color: var(--accent); font-weight: 900; margin-right: 7px; }
 
     .sample-links {
-      margin-top: 24px;
-      padding: 18px;
+      margin-top: 34px;
+      padding: 26px;
       border: 1px solid var(--line);
-      border-radius: 20px;
+      border-radius: 22px;
       background: rgba(255,255,255,0.035);
-      max-width: 620px;
+      width: 100%;
+      max-width: 100%;
+      text-align: center;
     }
 
     .sample-label {
@@ -184,8 +194,10 @@
 
     .sample-buttons {
       display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
       flex-wrap: wrap;
-      gap: 12px;
     }
 
     .report-preview {
