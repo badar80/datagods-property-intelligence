@@ -164,6 +164,30 @@
 
     .trusted-tags span::before { content: "✓"; color: var(--accent); font-weight: 900; margin-right: 7px; }
 
+    .sample-links {
+      margin-top: 24px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,255,255,0.035);
+      max-width: 620px;
+    }
+
+    .sample-label {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .sample-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
     .report-preview {
       border: 1px solid var(--line);
       border-radius: 24px;
@@ -347,11 +371,49 @@
 
     .cta p { color: var(--muted); margin: 0 auto 26px; max-width: 680px; font-size: 18px; }
 
+    .lead-form {
+      max-width: 680px;
+      margin: 28px auto 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .lead-form input,
+    .lead-form textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 14px 15px;
+      font: inherit;
+    }
+
+    .lead-form textarea {
+      grid-column: 1 / -1;
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .lead-form button {
+      grid-column: 1 / -1;
+      cursor: pointer;
+      width: fit-content;
+      justify-self: center;
+    }
+
+    .form-note {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
     footer { padding: 36px 0; color: var(--muted); border-top: 1px solid var(--line); font-size: 14px; }
     .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 
     @media (max-width: 1000px) {
-      .hero-grid, .features, .sample-grid, .steps, .pricing { grid-template-columns: 1fr; }
+      .hero-grid, .features, .sample-grid, .steps, .pricing, .lead-form { grid-template-columns: 1fr; }
       .proof { grid-template-columns: 1fr; }
       .preview-grid { grid-template-columns: 1fr; }
       .preview-pages { grid-template-columns: 1fr; }
@@ -369,7 +431,7 @@
         <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
       </nav>
-      <a class="button secondary" href="mailto:badar@datagods.co.uk?subject=Property%20Market%20Report%20Enquiry">Request sample</a>
+      <a class="button secondary" href="#contact">Get a report</a>
     </div>
   </header>
 
@@ -381,8 +443,8 @@
           <h1>Professional market reports for any UK city.</h1>
           <p class="lead">Datagods generates branded property market reports using Land Registry transaction data — covering price trends, market activity, property types, tenure, postcode districts and premium sectors.</p>
           <div class="hero-actions">
-            <a class="button" href="mailto:badar@datagods.co.uk?subject=Please%20generate%20a%20sample%20property%20report">Request a sample report →</a>
-            <a class="button secondary" href="#reports">View what’s included →</a>
+            <a class="button" href="#contact">Get a report →</a>
+            <a class="button secondary" href="#samples">View sample reports →</a>
           </div>
           <div class="proof">
             <div class="proof-card"><strong>10 pages</strong><span>client-ready PDF report</span></div>
@@ -396,12 +458,12 @@
             </div>
           </div>
 
-          <div style="margin-top:26px;">
-            <div style="font-size:14px;color:#a9b1bf;margin-bottom:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">Sample reports</div>
-            <div style="display:flex;flex-wrap:wrap;gap:12px;">
-              <a class="button secondary" href="sample-london.pdf" target="_blank">London sample PDF</a>
-              <a class="button secondary" href="sample-sheffield.pdf" target="_blank">Sheffield sample PDF</a>
-              <a class="button secondary" href="sample-scunthorpe.pdf" target="_blank">Scunthorpe sample PDF</a>
+          <div id="samples" class="sample-links">
+            <div class="sample-label">View sample reports</div>
+            <div class="sample-buttons">
+              <a class="button secondary" href="sample-london.pdf" target="_blank">London PDF</a>
+              <a class="button secondary" href="sample-sheffield.pdf" target="_blank">Sheffield PDF</a>
+              <a class="button secondary" href="sample-scunthorpe.pdf" target="_blank">Scunthorpe PDF</a>
             </div>
           </div>
         </div>
@@ -529,9 +591,19 @@
     <section id="contact">
       <div class="container">
         <div class="cta">
-          <h2>Want a sample report for your market?</h2>
-          <p>Send one UK city or town and Datagods will generate a sample property intelligence report.</p>
-          <a class="button" href="mailto:badar@datagods.co.uk?subject=Sample%20Property%20Report%20Request&body=Hi%20Datagods%2C%0A%0APlease%20generate%20a%20sample%20property%20market%20report%20for%3A%0A%0ACity%2FTown%3A%20%0A%0AThanks">Request sample</a>
+          <h2>Get a property market report</h2>
+          <p>Enter your details and the city or town you want analysed. Datagods will reply with next steps.</p>
+
+          <form class="lead-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Email address" required>
+            <input type="text" name="location" placeholder="City/town to analyse, e.g. Sheffield" required>
+            <input type="text" name="company" placeholder="Company name (optional)">
+            <textarea name="message" placeholder="What do you need? Single report, comparison pack, or premium white-label pack?"></textarea>
+            <button class="button" type="submit">Submit enquiry →</button>
+          </form>
+
+          <div class="form-note">Replace YOUR_FORM_ID with your Formspree form ID, or link this section to a Tally/Google Form.</div>
         </div>
       </div>
     </section>
